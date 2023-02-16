@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 
 import { View, Text, Image, StyleSheet, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import {useNavigation} from '@react-navigation/native';
 
 const Pins = (props) => {
-  const { title, image } = props.pin;
+
+  const navigation = useNavigation();
+
+  const {id, title, image } = props.pin;
   const [ratio, setRatio] = useState(1);
 
   {
@@ -17,8 +21,15 @@ const Pins = (props) => {
     }
   }, [image]);
 
+  const GetDetailsscreen = ()=>{
+    // pass the id of pin to next
+    navigation.navigate("Details",{id})
+  }
+
+
+  
   return (
-    <View style={styles.pin}>
+    <Pressable onPress={GetDetailsscreen} style={styles.pin}>
       <View>
         <Image
           source={{
@@ -26,12 +37,12 @@ const Pins = (props) => {
           }}
           style={[styles.image, { aspectRatio: ratio }]}
         />
-        <Pressable style={styles.likebtn}>
+        <Pressable  style={styles.likebtn}>
           <AntDesign name="hearto" size={24} color="black" />
         </Pressable>
       </View>
       <Text style={styles.title} numberOfLines={2}>{title}</Text>
-    </View>
+    </Pressable>
   );
 };
 

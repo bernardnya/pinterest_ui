@@ -1,12 +1,16 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import Homescreen from "./Screens/Homescreen";
+import Detailscreen from './Screens/DetailsScreen';
+import MainNavigation from './Navigations/mainNavigations';
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
-      <Homescreen/>
-    </SafeAreaView>
+    <SafeAreaProvider style={styles.container}>
+      <MainNavigation/>
+    </SafeAreaProvider>
   );
 }
 
